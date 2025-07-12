@@ -8,9 +8,14 @@
     "scheme": "amazonmobile",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.teegreat.amazonmobile",
+      "associatedDomains": [
+        "applinks:<YOUR_FRONTEND_API_URL>",
+        "webcredentials:<YOUR_FRONTEND_API_URL>"
+      ],
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
       }
@@ -21,7 +26,20 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.teegreat.amazonmobile"
+      "package": "com.teegreat.amazonmobile",
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "autoVerify": true,
+          "data": [
+            {
+              "scheme": "https",
+              "host": "funny-dolphin-65.clerk.accounts.dev"
+            }
+          ],
+          "category": ["BROWSABLE", "DEFAULT"]
+        }
+      ]
     },
     "web": {
       "bundler": "metro",
@@ -39,7 +57,18 @@
           "backgroundColor": "#ffffff"
         }
       ],
-      "expo-build-properties"
+      [
+         "expo-build-properties",
+         {
+          "ios": {
+            "deploymentTarget": "16.0"
+          },
+          "android": {
+            "minSdkVersion": 24,
+            "targetSdkVersion":34
+          }
+         }
+      ]
     ],
     "experiments": {
       "typedRoutes": true
