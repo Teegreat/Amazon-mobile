@@ -7,7 +7,7 @@ import React from "react";
 const Layout = () => {
   return (
     <StyledTabs
-      headerClassName="bg-dark text-white"
+      headerClassName="bg-dark"
       tabBar={(props) => <CustomTabBar {...props} />}
     >
       <Tabs.Screen

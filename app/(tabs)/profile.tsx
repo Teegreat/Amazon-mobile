@@ -1,9 +1,19 @@
-import { SignedIn, SignedOut } from "@clerk/clerk-expo";
+import { SignedIn, SignedOut, useAuth, useUser } from "@clerk/clerk-expo";
 import { Link } from "expo-router";
 import React from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Button, Text, TouchableOpacity, View } from "react-native";
 
 const Profile = () => {
+  const { user } = useUser();
+  const { signOut } = useAuth();
+
+  const createClerkPasskey = async () => {
+    try {
+      await user?.createPasskey();
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <View className="flex-1">
       <SignedOut>
@@ -23,7 +33,11 @@ const Profile = () => {
       </SignedOut>
 
       <SignedIn>
-        <Text>Signed In</Text>
+        <View className="pt-10 px-8 items-center flex gap-3 ">
+          <Text className="text-3xl text-center">You are signed in</Text>
+          <Button title="Create Passkey" onPress={createClerkPasskey} />
+          <Button title="Sign out" onPress={() => signOut()} />
+        </View>
       </SignedIn>
     </View>
   );

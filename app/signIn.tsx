@@ -84,7 +84,24 @@ const SignInScreen = () => {
     }
   };
 
-  const signInWithPassKey = async () => {};
+  const signInWithPassKey = async () => {
+    if (!isLoaded) return;
+
+    try {
+      const signInAttempt = await signIn.authenticateWithPasskey({
+        flow: "discoverable",
+      });
+
+      if (signInAttempt.status === "complete") {
+        await setActive({ session: signInAttempt.createdSessionId });
+        router.dismissTo("/(tabs)/profile");
+      } else {
+        console.error(JSON.stringify(signInAttempt, null, 2));
+      }
+    } catch (err) {
+      console.log("Error:", JSON.stringify(err, null, 2));
+    }
+  };
 
   return (
     <KeyboardAvoidingView

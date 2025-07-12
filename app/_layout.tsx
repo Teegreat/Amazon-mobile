@@ -8,6 +8,8 @@ import {
 } from "@react-navigation/native";
 import { Stack, useRouter } from "expo-router";
 import { LogBox, Platform, Text, TouchableOpacity, useColorScheme } from "react-native";
+import { passkeys } from "@clerk/clerk-expo/passkeys";
+
 import "./global.css";
 
 const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
@@ -55,7 +57,9 @@ const RootLayout = () => {
   const theme = colorScheme === "dark" ? DarkTheme : DefaultTheme;
 
   return (
-    <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
+    <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}
+    __experimental_passkeys={passkeys}
+    >
       <ThemeProvider value={theme}>
         <InitialLayout />
       </ThemeProvider>

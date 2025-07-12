@@ -23,7 +23,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundCaolor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
       "package": "com.teegreat.amazonmobile",
